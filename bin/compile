@@ -59,7 +59,6 @@ See https://github.com/weibeld/heroku-buildpack-run#usage
 EOF
   exit 1
 fi
-IFS=':' BUILDPACK_RUN_COMMANDS=($BUILDPACK_RUN_COMMANDS)
 
 # Run commands
 for BUILDPACK_RUN_CMD in ${BUILDPACK_RUN_COMMANDS[@]}; do
