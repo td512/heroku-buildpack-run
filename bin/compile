@@ -59,14 +59,11 @@ See https://github.com/weibeld/heroku-buildpack-run#usage
 EOF
   exit 1
 fi
-IFS=':' BUILDPACK_RUN_COMMANDS=($BUILDPACK_RUN_COMMANDS)
 
 # Run commands
-for BUILDPACK_RUN_CMD in ${BUILDPACK_RUN_COMMANDS[@]}; do
-  echo "Running: $BUILDPACK_RUN_CMD" | arrow
+  echo "Running: $BUILDPACK_RUN_COMMANDS" | arrow
   . "$BUILDPACK_RUN_CONFIG_FILE"
-  eval "$BUILDPACK_RUN_CMD" || {
-    echo "Aborting: '$BUILDPACK_RUN_CMD' exited with exit code $?" | arrow-err
+  eval "$BUILDPACK_RUN_COMMANDS" || {
+    echo "Aborting: '$BUILDPACK_RUN_COMMANDS' exited with exit code $?" | arrow-err
     exit 1
   }
-done
